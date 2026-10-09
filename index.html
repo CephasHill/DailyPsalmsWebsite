@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Daily Psalms | Five Psalms and One Proverb Every Day</title>
+  <meta name="description" content="Daily Psalms makes a daily Bible-reading habit simple: read five Psalms and one Proverb every day, with progress tracking, flexible reading paths, and helpful study tools.">
+  <meta name="theme-color" content="#06476b">
+
+  <link rel="canonical" href="https://dailypsalms.click/">
+  <link rel="icon" type="image/png" href="/images/ic_launcher-playstore.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dailypsalms.click/">
+  <meta property="og:title" content="Daily Psalms | Five Psalms and One Proverb Every Day">
+  <meta property="og:description" content="A simple, focused way to read through the Psalms and Proverbs every day.">
+  <meta property="og:image" content="https://dailypsalms.click/images/FeatureGraphic.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Daily Psalms",
+    "operatingSystem": "Android",
+    "applicationCategory": "BooksAndReference",
+    "description": "Read five Psalms and one Proverb every day with a simple reading plan and progress tracking.",
+    "isAccessibleForFree": true,
+    "downloadUrl": "https://play.google.com/store/apps/details?id=com.peter.dailypsalms",
+    "url": "https://dailypsalms.click/"
+  }
+  </script>
+
+  <style>
+    :root {
+      --ink: #102e43;
+      --blue: #075b86;
+      --blue-dark: #043e60;
+      --blue-deep: #032f4c;
+      --blue-soft: #e9f2f6;
+      --gold: #c89343;
+      --cream: #faf8f2;
+      --paper: #ffffff;
+      --muted: #64727b;
+      --border: #e4e8e8;
+      --shadow: 0 24px 60px rgba(16, 46, 67, .13);
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 5;
+      border-bottom: 1px solid rgba(16, 46, 67, .08);
+      background: rgba(250, 248, 242, .92);
+    }
+
+    .nav-wrap {
+      width: min(1180px, calc(100% - 48px));
+      min-height: 82px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 1.22rem;
+      font-weight: bold;
+      letter-spacing: .01em;
+      white-space: nowrap;
+    }
+
+    .brand-mark,
+    .logo-stack {
+      position: relative;
+      overflow: hidden;
+      flex: 0 0 auto;
+      border-radius: 20%;
+      background: var(--blue-dark);
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+    }
+
+    .brand-mark img,
+    .logo-stack img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-family: Arial, sans-serif;
+      font-size: .92rem;
+    }
+
+    .nav-links a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-links a:not(.nav-button):hover,
+    footer a:hover {
+      color: var(--blue);
+    }
+
+    .nav-button {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: white !important;
+      background: var(--blue);
+    }
+
+    .hero {
+      width: min(1180px, calc(100% - 48px));
+      margin: auto;
+      padding: 92px 0 110px;
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+      gap: 76px;
+      align-items: center;
+    }
+
+    .eyebrow,
+    .kicker {
+      color: var(--gold);
+      font-family: Arial, sans-serif;
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 680px;
+      margin-bottom: 24px;
+      font-size: clamp(3.1rem, 6.3vw, 5.65rem);
+      line-height: .97;
+      letter-spacing: -.055em;
+    }
+
+    h1 span {
+      color: var(--blue);
+    }
+
+    .hero-copy > p:not(.kicker) {
+      max-width: 560px;
+      color: var(--muted);
+      font-size: 1.2rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 13px 21px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+      font-size: .94rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 9px 20px rgba(16, 46, 67, .15);
+    }
+
+    .button.primary {
+      color: white;
+      background: var(--blue);
+    }
+
+    .button.primary:hover {
+      background: var(--blue-dark);
+    }
+
+    .button.secondary {
+      color: var(--ink);
+      border-color: var(--border);
+      background: var(--paper);
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px 18px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: .84rem;
+    }
+
+    .trust-row span::before {
+      content: "✓";
+      margin-right: 6px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .hero-art {
+      min-width: 0;
+    }
+
+    .feature-frame {
+      overflow: hidden;
+      border: 10px solid white;
+      border-radius: 24px;
+      background: var(--blue-dark);
+      box-shadow: var(--shadow);
+      transform: rotate(1deg);
+    }
+
+    .feature-frame img {
+      width: 100%;
+      aspect-ratio: 1025 / 501;
+      object-fit: cover;
+    }
+
+    .hero-note {
+      width: min(90%, 390px);
+      margin: -22px auto 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 13px 17px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: white;
+      box-shadow: 0 12px 28px rgba(16, 46, 67, .12);
+      font-family: Arial, sans-serif;
+      font-size: .84rem;
+    }
+
+    .hero-note .logo-stack {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+    }
+
+    .hero-note strong {
+      display: block;
+      color: var(--ink);
+      font-size: .9rem;
+    }
+
+    .hero-note span:last-child {
+      color: var(--muted);
+    }
+
+    .section {
+      padding: 104px 24px;
+    }
+
+    .section-inner {
+      width: min(1100px, 100%);
+      margin: auto;
+    }
+
+    .section-heading {
+      max-width: 700px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      margin-bottom: 14px;
+      font-size: clamp(2.35rem, 4vw, 3.5rem);
+      line-height: 1.05;
+      letter-spacing: -.035em;
+    }
+
+    .section-heading p {
+      max-width: 620px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .plan-section {
+      background: white;
+    }
+
+    .plan-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .plan-copy h2 {
+      margin-bottom: 16px;
+      font-size: clamp(2.3rem, 4vw, 3.35rem);
+      line-height: 1.06;
+      letter-spacing: -.04em;
+    }
+
+    .plan-copy p {
+      max-width: 510px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .number-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 32px;
+    }
+
+    .number-grid strong {
+      display: block;
+      color: var(--blue);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .number-grid span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: .78rem;
+      line-height: 1.3;
+    }
+
+    .reading-card {
+      padding: 34px;
+      border-radius: var(--radius);
+      color: white;
+      background: linear-gradient(145deg, var(--blue-dark), var(--blue));
+      box-shadow: var(--shadow);
+    }
+
+    .reading-card .eyebrow {
+      color: #aed4e2;
+    }
+
+    .reading-card h3 {
+      margin: 9px 0 23px;
+      font-size: 2rem;
+      line-height: 1.1;
+    }
+
+    .reading-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: Arial, sans-serif;
+    }
+
+    .reading-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .2);
+    }
+
+    .reading-list strong {
+      color: #f1d39c;
+    }
+
+    .reading-card-note {
+      margin: 23px 0 0;
+      color: #d1e1e7;
+      font-family: Arial, sans-serif;
+      font-size: .88rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 17px;
+    }
+
+    .feature {
+      min-height: 220px;
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: white;
+    }
+
+    .feature-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      margin-bottom: 24px;
+      border-radius: 50%;
+      color: white;
+      background: var(--blue);
+      font-family: Arial, sans-serif;
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    .feature h3 {
+      margin-bottom: 9px;
+      font-size: 1.22rem;
+      line-height: 1.15;
+    }
+
+    .feature p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+
+    .screenshots-section {
+      overflow: hidden;
+      background: var(--blue-soft);
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px 18px;
+    }
+
+    .screenshot-card {
+      margin: 0;
+    }
+
+    .screenshot-frame {
+      overflow: hidden;
+      border: 8px solid white;
+      border-radius: 17px;
+      background: var(--blue-dark);
+      box-shadow: 0 16px 30px rgba(16, 46, 67, .14);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .screenshot-frame:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 40px rgba(16, 46, 67, .2);
+    }
+
+    .screenshot-frame img {
+      width: 100%;
+      aspect-ratio: 1081 / 1920;
+      object-fit: cover;
+    }
+
+    .screenshot-card figcaption {
+      padding: 15px 4px 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .screenshot-card figcaption strong,
+    .screenshot-card figcaption span {
+      display: block;
+    }
+
+    .screenshot-card figcaption strong {
+      font-size: .93rem;
+    }
+
+    .screenshot-card figcaption span {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: .8rem;
+      line-height: 1.35;
+    }
+
+    .final-cta {
+      padding: 105px 24px;
+      color: white;
+      background: var(--blue-deep);
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      margin-bottom: 12px;
+      font-size: clamp(2.5rem, 5vw, 4.25rem);
+      line-height: 1;
+      letter-spacing: -.045em;
+    }
+
+    .final-cta p {
+      max-width: 520px;
+      margin: 0 auto 28px;
+      color: #c9dce4;
+      font-size: 1.08rem;
+    }
+
+    .final-cta .button.primary {
+      color: var(--blue-deep);
+      background: white;
+    }
+
+    footer {
+      width: min(1100px, calc(100% - 48px));
+      margin: auto;
+      padding: 28px 0 34px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: .86rem;
+    }
+
+    footer a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 54px;
+      }
+
+      .hero-copy {
+        max-width: 720px;
+      }
+
+      .hero-art {
+        width: min(760px, 100%);
+        margin: auto;
+      }
+
+      .features,
+      .screenshot-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-wrap,
+      .hero,
+      footer {
+        width: min(100% - 32px, 560px);
+      }
+
+      .nav-wrap {
+        min-height: 72px;
+      }
+
+      .nav-links a:not(.nav-button) {
+        display: none;
+      }
+
+      .hero {
+        padding: 62px 0 80px;
+      }
+
+      h1 {
+        font-size: clamp(2.9rem, 14vw, 4.4rem);
+      }
+
+      .section {
+        padding: 78px 16px;
+      }
+
+      .plan-layout {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .number-grid {
+        gap: 12px;
+      }
+
+      .reading-card {
+        padding: 27px;
+      }
+
+      .features,
+      .screenshot-grid {
+        gap: 16px;
+      }
+
+      .feature {
+        min-height: 0;
+        padding: 20px;
+      }
+
+      .feature-number {
+        margin-bottom: 17px;
+      }
+
+      .screenshot-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .final-cta {
+        padding: 78px 16px;
+      }
+
+      footer {
+        flex-direction: column;
+        padding-top: 24px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .features,
+      .screenshot-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .screenshot-grid {
+        width: min(260px, 100%);
+        margin: auto;
+      }
+
+      .screenshot-card figcaption {
+        padding-bottom: 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="/" aria-label="Daily Psalms home">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="/images/LogoBG@2x.png" alt="">
+          <img src="/images/LogoFG@2x.png" alt="">
+        </span>
+        <span>Daily Psalms</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="mailto:p.hill.businesses@gmail.com">Support</a>
+        <a class="nav-button" href="https://play.google.com/store/apps/details?id=com.peter.dailypsalms">
+          Get the app
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="kicker">A simple daily reading habit</p>
+        <h1>Five Psalms. <span>One Proverb.</span> Every day.</h1>
+        <p>
+          Daily Psalms makes it easy to read through the Psalms and Proverbs
+          consistently—one focused reading at a time.
+        </p>
+
+        <div class="buttons">
+          <a class="button primary" href="https://play.google.com/store/apps/details?id=com.peter.dailypsalms">
+            Get it on Google Play
+          </a>
+          <a class="button secondary" href="#screenshots">See the app</a>
+        </div>
+
+        <div class="trust-row" aria-label="App highlights">
+          <span>Works offline</span>
+          <span>Without ads</span>
+          <span>Built for consistency</span>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="feature-frame">
+          <img src="/images/FeatureGraphic.png" alt="Daily Psalms app showing Psalm 121 beside a lyre logo">
+        </div>
+
+        <div class="hero-note">
+          <span class="logo-stack" aria-hidden="true">
+            <img src="/images/LogoBG@2x.png" alt="">
+            <img src="/images/LogoFG@2x.png" alt="">
+          </span>
+          <span>
+            <strong>Open the app and begin.</strong>
+            <span>Your reading is ready when you are.</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section plan-section">
+      <div class="section-inner plan-layout">
+        <div class="plan-copy">
+          <p class="eyebrow">A plan you can understand immediately</p>
+          <h2>Keep your reading simple and steady.</h2>
+          <p>
+            The classic plan spaces five Psalms throughout the book and pairs
+            them with the Proverb matching the day of the month. Daily Psalms
+            keeps the plan, your progress, and your habit in one place.
+          </p>
+
+          <div class="number-grid" aria-label="Reading plan summary">
+            <div><strong>5</strong><span>Psalms each day</span></div>
+            <div><strong>1</strong><span>Proverb each day</span></div>
+            <div><strong>150</strong><span>Psalms each month</span></div>
+          </div>
+        </div>
+
+        <div class="reading-card">
+          <p class="eyebrow">Example daily reading</p>
+          <h3>Day 10</h3>
+          <ul class="reading-list">
+            <li><span>Psalm</span><strong>10</strong></li>
+            <li><span>Psalm</span><strong>40</strong></li>
+            <li><span>Psalm</span><strong>70</strong></li>
+            <li><span>Psalm</span><strong>100</strong></li>
+            <li><span>Psalm</span><strong>130</strong></li>
+            <li><span>Proverb</span><strong>10</strong></li>
+          </ul>
+          <p class="reading-card-note">Open the app, see today's reading, and begin.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="eyebrow">Built for consistency</p>
+          <h2>Everything you need for a daily reading habit.</h2>
+          <p>
+            Stay focused on the text while Daily Psalms handles the planning,
+            progress, and helpful details around it.
+          </p>
+        </div>
+
+        <div class="features">
+          <article class="feature">
+            <span class="feature-number">01</span>
+            <h3>Classic reading plan</h3>
+            <p>Read five Psalms spaced throughout the book, plus the Proverb matching the day of the month.</p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">02</span>
+            <h3>Track your progress</h3>
+            <p>Check off readings, review your history, and see your consistency grow over time.</p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">03</span>
+            <h3>Choose your path</h3>
+            <p>Use the classic plan or choose a pace and reading track that better fits your life.</p>
+          </article>
+
+          <article class="feature">
+            <span class="feature-number">04</span>
+            <h3>Study more deeply</h3>
+            <p>Explore translations, footnotes, and word information when you want to go further.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section screenshots-section" id="screenshots">
+      <div class="section-inner">
+        <div class="section-heading">
+          <p class="eyebrow">Inside Daily Psalms</p>
+          <h2>A focused reading experience, with room to go deeper.</h2>
+          <p>
+            Start with today's assignment, then use the tools that help you
+            read, study, and return tomorrow.
+          </p>
+        </div>
+
+        <div class="screenshot-grid">
+          <figure class="screenshot-card">
+            <div class="screenshot-frame">
+              <img src="/images/screenshots/Showcase1.png" alt="Daily Psalms daily progress screen" loading="lazy" decoding="async">
+            </div>
+            <figcaption><strong>Your daily Psalms, ready to read</strong><span>See today's assignment at a glance.</span></figcaption>
+          </figure>
+
+          <figure class="screenshot-card">
+            <div class="screenshot-frame">
+              <img src="/images/screenshots/Showcase2.png" alt="Daily Psalms reading screen displaying Psalm 121" loading="lazy" decoding="async">
+            </div>
+            <figcaption><strong>Read offline. Without ads.</strong><span>Keep your attention on the text.</span></figcaption>
+          </figure>
+
+          <figure class="screenshot-card">
+            <div class="screenshot-frame">
+              <img src="/images/screenshots/Showcase3.png" alt="Daily Psalms reading history calendar" loading="lazy" decoding="async">
+            </div>
+            <figcaption><strong>See your reading habit grow</strong><span>Review the days you have completed.</span></figcaption>
+          </figure>
+
+          <figure class="screenshot-card">
+            <div class="screenshot-frame">
+              <img src="/images/screenshots/Showcase4.png" alt="Daily Psalms word information and lexicon screen" loading="lazy" decoding="async">
+            </div>
+            <figcaption><strong>Tap a word. Explore its meaning.</strong><span>Look more closely when a passage invites it.</span></figcaption>
+          </figure>
+
+          <figure class="screenshot-card">
+            <div class="screenshot-frame">
+              <img src="/images/screenshots/Showcase5.png" alt="Daily Psalms translation selection menu" loading="lazy" decoding="async">
+            </div>
+            <figcaption><strong>Choose your translation</strong><span>Read in the translation that works for you.</span></figcaption>
+          </figure>
+
+          <figure class="screenshot-card">
+            <div class="screenshot-frame">
+              <img src="/images/screenshots/Showcase6.png" alt="Daily Psalms reading path selection screen" loading="lazy" decoding="async">
+            </div>
+            <figcaption><strong>Choose a path that fits</strong><span>Adjust the pace without losing the habit.</span></figcaption>
+          </figure>
+
+          <figure class="screenshot-card">
+            <div class="screenshot-frame">
+              <img src="/images/screenshots/Showcase7.png" alt="Daily Psalms home screen widget" loading="lazy" decoding="async">
+            </div>
+            <figcaption><strong>Keep today's reading in view</strong><span>Use the home screen widget as a quiet reminder.</span></figcaption>
+          </figure>
+
+          <figure class="screenshot-card">
+            <div class="screenshot-frame">
+              <img src="/images/screenshots/Showcase8.png" alt="Daily Psalms footnote detail screen" loading="lazy" decoding="async">
+            </div>
+            <figcaption><strong>Go deeper with footnotes</strong><span>Find context without leaving the reading.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="section-inner">
+        <h2>Make today's reading count.</h2>
+        <p>Download Daily Psalms and begin with a simple reading you can return to every day.</p>
+        <a class="button primary" href="https://play.google.com/store/apps/details?id=com.peter.dailypsalms">
+          Download Daily Psalms
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 Daily Psalms</div>
+    <div>
+      <a href="mailto:p.hill.businesses@gmail.com">Support</a>
+      &nbsp; · &nbsp;
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </footer>
+</body>
+</html>
